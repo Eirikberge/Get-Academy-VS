@@ -11,71 +11,84 @@ class Program
         {
             Console.Clear();
             Show(myTasks);
-            Console.WriteLine("Hva vil du gjøre? ");
-            Console.WriteLine("1 = Legg til ny");
-            Console.WriteLine("2 = Marker fullført");
-            var cmd = Console.ReadLine();
-            var ask = "Skriv inn";
+            var cmd = GetCmd();
             if (cmd == "1")
             {
-                var newTask = new Tasks();
-                Console.WriteLine($"{ask} navn:");
-                newTask.Name = Console.ReadLine();
-                Console.WriteLine($"{ask} når skal den være ferdig(dd/mm/yyyy):");
-                if (DateTime.TryParse(Console.ReadLine(), out DateTime dueDate))
-                {
-                    newTask.DueDate = dueDate;
-                    newTask.isDone = false;
-                    myTasks.Add(newTask);
-                }
-                else
-                {
-                    Console.WriteLine("Ugyldig datoformat. Bruker dagens dato.");
-                    newTask.DueDate = DateTime.Today;
-                    newTask.isDone = false;
-                    myTasks.Add(newTask);
-                }
-
-                // Denne ifen med dato må jeg høre om, er fra chatGPT
-                // begge ifer som tar imot tall som int
-
+                FirstCmdText(myTasks);
             }
             else if (cmd == "2")
             {
-                Console.WriteLine("Hvilken oppgave vil du markere fullført? (skriv inn nr til oppgaven)");
-                string input = Console.ReadLine();
-                if (int.TryParse(input, out int DoTaskDone))
-                {
-                    Console.WriteLine($"Du valgte oppgave nummer {DoTaskDone}");
-                    myTasks[DoTaskDone - 1].isDone = true;
-
-                }
-                else
-                {
-                    Console.WriteLine("Ugyldig inntasting. Skriv inn et gyldig nummer.");
-                }
+                SecondCmdText(myTasks);
             }
 
         }
     }
 
-    static List<Tasks> modelData()
+    private static string? GetCmd()
     {
-        var myTasks = new List<Tasks>
+        Console.WriteLine("Hva vil du gjøre? ");
+        Console.WriteLine("1 = Legg til ny");
+        Console.WriteLine("2 = Marker fullført");
+        var cmd = Console.ReadLine();
+        return cmd;
+    }
+
+    private static void SecondCmdText(List<ToDoApp.Task> myTasks)
+    {
+        Console.WriteLine("Hvilken oppgave vil du markere fullført? (skriv inn nr til oppgaven)");
+        var input = Console.ReadLine();
+        var inputToInt = Convert.ToInt32(input);
+        if (inputToInt < 1 || inputToInt > myTasks.Count)
         {
-            new Tasks()
+            Console.WriteLine("Skriv inn et gyldig tall");
+        }
+        else
+        {
+            myTasks[inputToInt - 1].isDone = true;
+        }
+    }
+
+    private static void FirstCmdText(List<ToDoApp.Task> myTasks)
+    {
+        var newTask = new ToDoApp.Task();
+        Console.WriteLine("skriv inn navn:");
+        newTask.Name = Console.ReadLine();
+        Console.WriteLine("Skriv inn når skal den være ferdig(dd/mm/yyyy):");
+        if (DateTime.TryParse(Console.ReadLine(), out DateTime dueDate))
+        {
+            newTask.DueDate = dueDate;
+            newTask.isDone = false;
+            myTasks.Add(newTask);
+        }
+        else
+        {
+            Console.WriteLine("Ugyldig datoformat. Bruker dagens dato.");
+            newTask.DueDate = DateTime.Today;
+            newTask.isDone = false;
+            myTasks.Add(newTask);
+        }
+
+        // Denne ifen med dato må jeg høre om, er fra chatGPT
+        // begge ifer som tar imot tall som int
+    }
+
+    static List<ToDoApp.Task> modelData()
+    {
+        var myTasks = new List<ToDoApp.Task>
+        {
+            new ToDoApp.Task()
             {
                 Name = "Vaske",
                 DueDate = new DateTime(2023, 11, 22),
                 isDone = true,
             },
-            new Tasks()
+            new ToDoApp.Task()
             {
                 Name = "Rydde",
                 DueDate = new DateTime(2023, 12, 22),
                 isDone = false,
             },
-            new Tasks()
+            new ToDoApp.Task()
             {
                 Name = "Støvsuge",
                 DueDate = new DateTime(2023, 11, 22),
@@ -85,7 +98,7 @@ class Program
         return myTasks;
     }
 
-    static void Show(List<Tasks> myTasks)
+    static void Show(List<ToDoApp.Task> myTasks)
     {
         Console.WriteLine("Oppgave:  Frist:    Fullført:");
         Console.WriteLine();
@@ -104,7 +117,7 @@ class Program
         }
         Console.WriteLine();
     }
-    private static void CreateTaskText(Tasks task)
+    private static void CreateTaskText(ToDoApp.Task task)
     {
         Console.Write(task.Name.PadRight(10));
         Console.Write(task.DueDate.ToString("dd/MM/yy"));

@@ -1,6 +1,6 @@
 ﻿namespace ToDoApp
 {
-    internal class Tasks
+    internal class Task
     {
         public string Name;
         public DateTime DueDate;
