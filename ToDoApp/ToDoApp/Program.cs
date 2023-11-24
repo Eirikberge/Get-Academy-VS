@@ -7,12 +7,11 @@ class Program
     static void Main(string[] args)
     {
         var myTasks = modelData();
-        int startNr = 1;
 
         while (true)
         {
             Console.Clear();
-            ShowTasks(myTasks, startNr);
+            ShowTasks(myTasks);
             var cmd = MenuAndGetCmd();
             if      (cmd == "1") Add(myTasks);
             else if (cmd == "2") MarkDone(myTasks);
@@ -95,32 +94,29 @@ class Program
         return myTasks;
     }
 
-    static void ShowTasks(List<ToDoApp.Task> myTasks, int startNr)
+    static void ShowTasks(List<ToDoApp.Task> myTasks)
     {
         Console.WriteLine("Oppgave:  Frist:    Fullført:");
         Console.WriteLine();
-        int Nr = startNr;
         foreach (var task in myTasks)
         {
             
             if (task.isDone)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                CreateTaskText(task, Nr);
+                CreateTaskText(task);
                 Console.ResetColor();
             }
             else
             {
-                CreateTaskText(task, Nr);
+                CreateTaskText(task);
             }
-
-            Nr++;
         }
         Console.WriteLine();
     }
-    private static void CreateTaskText(ToDoApp.Task task, int Nr)
+    private static void CreateTaskText(ToDoApp.Task task)
     {
-        Console.Write(Nr + ". " + task.Name.PadRight(10));
+        Console.Write(task.Name.PadRight(10));
         Console.Write(task.DueDate.ToString("dd/MM/yy"));
         Console.WriteLine(task.isDone ? $"    Ja" : "   Nei");
     }
