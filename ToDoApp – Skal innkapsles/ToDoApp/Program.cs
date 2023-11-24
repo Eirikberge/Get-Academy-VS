@@ -1,44 +1,54 @@
 ﻿using System.Threading.Tasks;
 using ToDoApp;
-using Task = ToDoApp.Task;
 
 class Program
 {
     static void Main(string[] args)
     {
         var myTasks = modelData();
-        int startNr = 1;
 
         while (true)
         {
             Console.Clear();
-            ShowTasks(myTasks, startNr);
-            var cmd = MenuAndGetCmd();
-            if      (cmd == "1") Add(myTasks);
-            else if (cmd == "2") MarkDone(myTasks);
-            else if (cmd == "3") Delete(myTasks);
+            Show(myTasks);
+            var cmd = GetCmd();
+            if (cmd == "1")
+            {
+                FirstCmdText(myTasks);
+            }
+            else if (cmd == "2")
+            {
+                SecondCmdText(myTasks);
+            }
+
         }
     }
 
-    private static void Delete(List<Task> myTasks)
+    private static string? GetCmd()
     {
-        Console.WriteLine("Hvilken oppgave vil du slette?(skriv inn nr til oppgaven");
-        var input = Console.ReadLine();
-        var inputToInt = Convert.ToInt32(input);
-        if (inputToInt < 1 || inputToInt > myTasks.Count) Console.WriteLine("Skriv inn et gyldig tall");
-        else myTasks.Remove(myTasks[inputToInt - 1]);
+        Console.WriteLine("Hva vil du gjøre? ");
+        Console.WriteLine("1 = Legg til ny");
+        Console.WriteLine("2 = Marker fullført");
+        var cmd = Console.ReadLine();
+        return cmd;
     }
 
-    private static void MarkDone(List<ToDoApp.Task> myTasks)
+    private static void SecondCmdText(List<ToDoApp.Task> myTasks)
     {
         Console.WriteLine("Hvilken oppgave vil du markere fullført? (skriv inn nr til oppgaven)");
         var input = Console.ReadLine();
         var inputToInt = Convert.ToInt32(input);
-        if (inputToInt < 1 || inputToInt > myTasks.Count) Console.WriteLine("Skriv inn et gyldig tall");
-        else myTasks[inputToInt - 1].isDone = true;
+        if (inputToInt < 1 || inputToInt > myTasks.Count)
+        {
+            Console.WriteLine("Skriv inn et gyldig tall");
+        }
+        else
+        {
+            myTasks[inputToInt - 1].isDone = true;
+        }
     }
 
-    private static void Add(List<ToDoApp.Task> myTasks)
+    private static void FirstCmdText(List<ToDoApp.Task> myTasks)
     {
         var newTask = new ToDoApp.Task();
         Console.WriteLine("skriv inn navn:");
@@ -57,16 +67,9 @@ class Program
             newTask.isDone = false;
             myTasks.Add(newTask);
         }
-    }
 
-    private static string? MenuAndGetCmd()
-    {
-        Console.WriteLine("Hva vil du gjøre? ");
-        Console.WriteLine("1 = Legg til ny");
-        Console.WriteLine("2 = Marker fullført");
-        Console.WriteLine("3 = Slett en oppgave");
-        var cmd = Console.ReadLine();
-        return cmd;
+        // Denne ifen med dato må jeg høre om, er fra chatGPT
+        // begge ifer som tar imot tall som int
     }
 
     static List<ToDoApp.Task> modelData()
@@ -95,33 +98,39 @@ class Program
         return myTasks;
     }
 
-    static void ShowTasks(List<ToDoApp.Task> myTasks, int startNr)
+    static void Show(List<ToDoApp.Task> myTasks)
     {
         Console.WriteLine("Oppgave:  Frist:    Fullført:");
         Console.WriteLine();
-        int Nr = startNr;
         foreach (var task in myTasks)
         {
-            
             if (task.isDone)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                CreateTaskText(task, Nr);
+                CreateTaskText(task);
                 Console.ResetColor();
             }
             else
             {
-                CreateTaskText(task, Nr);
+                CreateTaskText(task);
             }
-
-            Nr++;
         }
         Console.WriteLine();
     }
-    private static void CreateTaskText(ToDoApp.Task task, int Nr)
+    private static void CreateTaskText(ToDoApp.Task task)
     {
-        Console.Write(Nr + ". " + task.Name.PadRight(10));
+        Console.Write(task.Name.PadRight(10));
         Console.Write(task.DueDate.ToString("dd/MM/yy"));
         Console.WriteLine(task.isDone ? $"    Ja" : "   Nei");
     }
 }
+
+
+
+//var myTasks = new Tasks[] {myTask1, myTask2, myTask3};
+//var myTask = new Tasks[3];
+//myTask[0] = myTask1;
+
+
+//var tasks = new List<Task>();
+//tasks.Add(task1);
