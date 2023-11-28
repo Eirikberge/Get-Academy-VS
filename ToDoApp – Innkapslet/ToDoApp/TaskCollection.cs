@@ -65,7 +65,14 @@
         {
             _tasks[taskNo - 1].MarkDone();
         }
-
+        //private static void MarkDone(List<ToDoApp.Task> myTasks)
+        //{
+        //    Console.WriteLine("Hvilken oppgave vil du markere fullført? (skriv inn nr til oppgaven)");
+        //    var input = Console.ReadLine();
+        //    var inputToInt = Convert.ToInt32(input);
+        //    if (inputToInt < 1 || inputToInt > myTasks.Count) Console.WriteLine("Skriv inn et gyldig tall");
+        //    else myTasks[inputToInt - 1].isDone = true;
+        //}
         public void AddTask(string name, DateTime dueDate)
         {
             var task = new Task();
@@ -73,6 +80,11 @@
             task.DueDate = dueDate;
             task.isDone = false;
             _tasks.Add(task);
+        }
+
+        public void DeleteTask(int taskNo)
+        {
+            _tasks.RemoveAt(taskNo - 1);
         }
     }
 }
