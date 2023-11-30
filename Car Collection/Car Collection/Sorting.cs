@@ -3,10 +3,10 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Car_Collection
 {
-    internal class GetInfo
+    internal class Sorting
     {
         private Car[] _cars;
-        public GetInfo(Car[] cars)
+        public Sorting(Car[] cars)
         {
             _cars = cars;
         }

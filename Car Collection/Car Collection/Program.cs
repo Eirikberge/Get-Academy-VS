@@ -7,7 +7,7 @@
             Console.WindowHeight = 42;
             var garage = new Garage();
             var cars = garage.GetCars();
-            var getInfo = new GetInfo(cars);
+            var getInfo = new Sorting(cars);
 
             while (true)
             {
@@ -20,24 +20,24 @@
             }
         }
 
-        private static void DisplayCarsByAnnualProduction(GetInfo getInfo)
+        private static void DisplayCarsByAnnualProduction(Sorting getInfo)
         {
             getInfo.DisplayCarsByAnnualProduction();
         }
 
-        private static void DisplayCarsByFoundedDate(GetInfo getInfo)
+        private static void DisplayCarsByFoundedDate(Sorting getInfo)
         {
             getInfo.DisplayCarsByFoundedDate();
         }
 
-        private static void DisplayCarAndCountry(GetInfo getInfo)
+        private static void DisplayCarAndCountry(Sorting getInfo)
         {
             Console.WriteLine("Hvilket bilmerke vil du sjekke?");
             var brandInput = Console.ReadLine();
             getInfo.DisplayCarsCountry(brandInput);
         }
 
-        private static void DisplayCountryAndCars(GetInfo getInfo)
+        private static void DisplayCountryAndCars(Sorting getInfo)
         {
             Console.WriteLine("Hvilket land vil du se bilmerkene til? (eller se alle)");
             var countryInput = Console.ReadLine();
