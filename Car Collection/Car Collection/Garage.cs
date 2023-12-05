@@ -44,5 +44,8 @@
         {
             return _cars;
         }
+        //GetCars() lar kode fra utsiden hente listen. Men merk at om koden endrer på denne listen, så vil endringen gjelde internt i Garage også.
+        //Det er fordi variabler med arrays både i C# og JavaScript er referanser. Så referansen GetCars() returnerer er til den samme listen.
+        //Det er et litt avansert poeng, men viktig nok. 
     }
 }

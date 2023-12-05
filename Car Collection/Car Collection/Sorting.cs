@@ -88,4 +88,5 @@ namespace Car_Collection
             Console.ResetColor();
         }
     }
+    //Merk at når du gjør Array.Sort, så endrer du arrayen. Det er ikke noe problem her, men kan være det i andre sammenhenger.
 }
