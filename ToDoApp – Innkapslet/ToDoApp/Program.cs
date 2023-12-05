@@ -12,7 +12,7 @@ class Program
             Console.Clear();
             tasks.Show();
             var cmd = WriteMenuAndGetCmd();
-            if (cmd == "1") Add(tasks);
+            if (cmd == "1") AddTask(tasks);
             else if (cmd == "2") MarkIsDone(tasks);
             else if (cmd == "3") Delete(tasks);
         }
@@ -36,7 +36,7 @@ class Program
         else tasks.MarkDone(taskNo);
     }
 
-    private static void Add(TaskCollection myTasks)
+    private static void AddTask(TaskCollection myTasks)
     {
         Console.WriteLine("Skriv inn navn:");
         var name = Console.ReadLine();
