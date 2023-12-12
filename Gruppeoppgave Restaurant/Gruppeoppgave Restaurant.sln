@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gruppeoppgave Resturant", "Gruppeoppgave Resturant\Gruppeoppgave Resturant.csproj", "{358090E8-2004-47F7-BAEC-CA50CE21479F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gruppeoppgave Restaurant", "Gruppeoppgave Resturant\Gruppeoppgave Restaurant.csproj", "{358090E8-2004-47F7-BAEC-CA50CE21479F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

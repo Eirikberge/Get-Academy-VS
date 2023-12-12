@@ -28,25 +28,8 @@
         {
             //Skal også gjøre så bordet er reservert i 2 timer.
             Reservation newReservation = new Reservation(name, phoneNr, persons, arrivalTime);
-
-            if (CheckAvailibility(persons))
-            {
-                _reservations.Add(newReservation);
-
-            }
+            _reservations.Add(newReservation);
             return newReservation;
-        }
-
-        public bool CheckAvailibility(int inputNr)
-        {
-            foreach (var table in _tables)
-            {
-                if (table.Size >= inputNr)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
     }
 }

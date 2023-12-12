@@ -20,7 +20,7 @@
         {
             //Denne skal vise innholdet i reservasjonen om den var gyldig
             // eller en feilmelding om den ikke er gyldig
-            var arrivalTime = _dateTime.ToString();
+            var arrivalTime = _dateTime.ToString("HH");
             return $"Reservert bord til {_numberOfGuest} personer {_dateTime}";
         }
 
