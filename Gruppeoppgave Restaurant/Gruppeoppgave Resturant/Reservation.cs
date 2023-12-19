@@ -2,32 +2,25 @@
 {
     internal class Reservation
     {
-        private string _name;
-        private string _phoneNr;
+        private readonly string _name;
+        private readonly string _phoneNr;
         private int _numberOfGuest;
-        private DateTime _dateTime;
+        public DateTime StartTime { get; }
+        public Table Table { get; }
 
-        public Reservation(string name, string phoneNr, int numberOfGuest, DateTime dateTime)
+        public Reservation(string name, string phoneNr, int numberOfGuest, DateTime startTime, Table table)
         {
             _name = name;
             _phoneNr = phoneNr;
             _numberOfGuest = numberOfGuest;
-            _dateTime = dateTime;
+            StartTime = startTime;
+            Table = table;
 
         }
 
         public string GetDescription()
         {
-            //Denne skal vise innholdet i reservasjonen om den var gyldig
-            // eller en feilmelding om den ikke er gyldig
-            var arrivalTime = _dateTime.ToString("HH");
-            return $"Reservert bord til {_numberOfGuest} personer {_dateTime}";
-        }
-
-
-        public Restaurant GetReservation()
-        {
-            //Denne skal settes til null om den ikke finner noen reservasjon
+            return $"Reservert bord til {_numberOfGuest} personer kl {StartTime:g}";
         }
     }
 }

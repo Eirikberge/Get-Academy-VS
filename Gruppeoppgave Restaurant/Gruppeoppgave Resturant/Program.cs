@@ -18,14 +18,14 @@
             var reservation1 = reservationResponse1.GetReservation();
             Console.WriteLine(reservation1.GetDescription());
             // Reservert bord til 5 personer 24.12.2023 kl. 17:00
-            //var reservationResponse2 = restaurant.CreateReservation("Hansen", "997 78 866", 5, dateTime);
-            //Console.WriteLine(reservationResponse2.GetDescription());
-            //// Vi beklager! Det er ikke ledig bord til 5 personer 24.12.2023 kl. 17:00
-            //var reservation2 = reservationResponse2.GetReservation();
-            //// Denne skal være null
-            //restaurant.CreateReservation("Nilsen", "994 48 866", 4, dateTime);
-            //var txt = restaurant.GetAllReservationsForOneDay(dateTime.Date);
-            //Console.WriteLine(txt);
+            var reservationResponse2 = restaurant.CreateReservation("Hansen", "997 78 866", 5, dateTime);
+            Console.WriteLine(reservationResponse2.GetDescription());
+            // Vi beklager! Det er ikke ledig bord til 5 personer 24.12.2023 kl. 17:00
+            var reservation2 = reservationResponse2.GetReservation();
+            // Denne skal være null
+            restaurant.CreateReservation("Nilsen", "994 48 866", 4, dateTime);
+            var txt = restaurant.GetAllReservationsForOneDay(dateTime.Date);
+            Console.WriteLine(txt);
             //           Bord A (6 personer)     |     Bord B (4 personer)   
             // 16:00                             |
             // 16:15                             |

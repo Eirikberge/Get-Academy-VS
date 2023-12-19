@@ -5,21 +5,22 @@ namespace Gruppeoppgave_Resturant
     internal class Table
     {
         private string Name;
-        public int Size { get; }
-        public bool IsTaken { get; set; }
-        //Denne er set; slik at vi kan endre den når et bord er opptatt
-
-        public Table(string name, int size, bool IsTaken = false)
+        public int _size { get; }
+        public Table(string name, int size)
         {
             Name = name;
-            Size = size;
+            _size = size;
         }
 
         public string GetDescription()
         //Denne brukes til linje 11 og 12 i program
         {
-            var description = $"Bord {Name} har plass til {Size} personer";
-            return description;
+            return $"Bord {Name} har plass til {_size} personer";
+        }
+
+        public bool HasCapacity(int persons)
+        {
+            return _size >= persons ;
         }
     }
 }
