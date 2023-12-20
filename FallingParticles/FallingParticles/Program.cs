@@ -32,13 +32,12 @@ namespace FallingParticles
                         InitGameRoundsBetweenSpawn(game);
                         roundCount = 0;
                     }
-
                     roundCount++;
                     levelCount++;
                     if (levelCount == 100)
                     {
                         levelCount = 0;
-                        game.AddLevel();
+                        game.IncreaseLevel();
                     }
                     Thread.Sleep(100);
                 }
@@ -69,7 +68,7 @@ namespace FallingParticles
             Console.SetCursorPosition(paddle.PaddlePosition, Console.WindowHeight - 1);
             Console.Write(paddle.myPaddle);
 
-            game.DrawPartical();
+            game.GetPartical();
         }
         static void MovePaddle(Paddle paddle)
         {

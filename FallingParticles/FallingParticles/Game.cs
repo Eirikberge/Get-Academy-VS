@@ -6,10 +6,10 @@ namespace FallingParticles
     {
         private Paddle paddle;
         private List<Particle> particles = new List<Particle>(); // Brukes i SpawnParticle
-        private bool _isGameOver; // Brukes egentlig ikke, men er også i InitializeGame
-        public int Level { get; private set; } // Brukes i Main, InitializeGame, og DrawGame
+        private bool _isGameOver; // Finnes i InitializeGame
+        public int Level { get; private set; } // Brukes i InitializeGame, og DrawGame
         public int Score { get; private set; } // Brukes i InitializeGame, DrawGame og MoveParticles
-        public int GameRoundsBetweenSpawn { get; set; } // Brukes i Main, InitGameRoundsBetweenSpawn
+        public int GameRoundsBetweenSpawn { get; private set; } // Brukes i Main, InitGameRoundsBetweenSpawn
         private static readonly Random random = new Random(); //Denne skal til Particles, siden den kun brukes i SpawnParticle
 
         public Game(bool isGameOver, int level, int score, int gameRoundsBetweenSpawn, Paddle paddle)
@@ -53,7 +53,6 @@ namespace FallingParticles
 
         public bool CheckLostParticle()
         {
-
             foreach (var particle in particles)
             {
                 if ((particle.X < paddle.PaddlePosition || particle.X > paddle.PaddlePosition + paddle.myPaddle.Length)
@@ -62,7 +61,6 @@ namespace FallingParticles
                     return true;
                 }
             }
-
             return false;
         }
         public void SpawnParticles()
@@ -75,12 +73,12 @@ namespace FallingParticles
             particles.Add(newParticle);
         }
 
-        public void AddLevel()
+        public void IncreaseLevel()
         {
             Level++;
         }
 
-        public void DrawPartical()
+        public void GetPartical()
         {
             foreach (var particle in particles)
             {
