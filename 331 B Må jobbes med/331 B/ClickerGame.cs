@@ -1,4 +1,6 @@
-﻿namespace _331_B
+﻿using System.Windows.Input;
+
+namespace _331_B
 {
     internal class ClickerGame
     {
@@ -36,5 +38,7 @@
             _points -= 100;
             _pointsPerClickIncrease++;
         }
+            
+
     }
 }

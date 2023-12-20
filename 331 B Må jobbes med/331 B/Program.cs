@@ -5,6 +5,10 @@
         static void Main(string[] args)
         {
             var clickerGame = new ClickerGame();
+            var commando = new iCommand[]
+            {
+
+            };
             while (true)
             {
                 Console.Clear();
