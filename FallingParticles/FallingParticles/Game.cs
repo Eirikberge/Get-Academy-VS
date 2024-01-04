@@ -4,28 +4,44 @@ namespace FallingParticles
 {
     internal class Game
     {
-        private Paddle paddle;
-        private List<Particle> particles = new List<Particle>(); // Brukes i SpawnParticle
+        private Paddle _paddle;
+        private List<Particle> _particles = new List<Particle>(); // Brukes i SpawnParticle
         private bool _isGameOver; // Finnes i InitializeGame
         public int Level { get; private set; } // Brukes i InitializeGame, og DrawGame
         public int Score { get; private set; } // Brukes i InitializeGame, DrawGame og MoveParticles
         public int GameRoundsBetweenSpawn { get; private set; } // Brukes i Main, InitGameRoundsBetweenSpawn
-        private static readonly Random random = new Random(); //Denne skal til Particles, siden den kun brukes i SpawnParticle
+        private Random _random = new Random();
 
-        public Game(bool isGameOver, int level, int score, int gameRoundsBetweenSpawn, Paddle paddle)
+        public Game(Paddle paddle)
         {
-            _isGameOver = isGameOver;
-            Level = level;
-            Score = score;
-            GameRoundsBetweenSpawn = gameRoundsBetweenSpawn;
-            this.paddle = paddle;
+            _isGameOver = false;
+            Level = 0;
+            Score = 0;
+            GameRoundsBetweenSpawn = 0;
+            this._paddle = paddle;
+        }
+
+        public void MovePaddle()
+        {
+            if (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true);
+                var moveLeft = key.Key == ConsoleKey.LeftArrow && _paddle.PaddlePosition >= _paddle.PaddleMoveDistance;
+                var moveRight = key.Key == ConsoleKey.RightArrow && _paddle.PaddlePosition < Console.WindowWidth - _paddle.MyPaddle.Length;
+                if (moveLeft || moveRight)
+                {
+                    var direction = moveLeft ? -1 : 1;
+                    int newPosition = _paddle.PaddlePosition + direction * 3 * _paddle.MyPaddle.Length / 4;
+                    _paddle.UpdatePaddlePosition(newPosition);
+                }
+            }
         }
 
         public void InitializeGame()
         {
             var centerX = Console.WindowWidth / 2;
-            paddle.PaddlePosition = centerX - (centerX % paddle.PaddleMoveDistance);
-            particles.Clear();
+            _paddle.UpdatePaddlePosition(centerX - (centerX % _paddle.PaddleMoveDistance));
+            _particles.Clear();
             _isGameOver = false;
             Score = 0;
             Level = 1;
@@ -39,23 +55,23 @@ namespace FallingParticles
 
         public void MoveParticles()
         {
-            for (var index = particles.Count - 1; index >= 0; index--)
+            for (var index = _particles.Count - 1; index >= 0; index--)
             {
-                var particle = particles[index];
+                var particle = _particles[index];
                 particle.Y += 0.5f;
                 if (particle.Y > Console.WindowHeight - 1)
                 {
                     Score++;
-                    particles.Remove(particle);
+                    _particles.Remove(particle);
                 }
             }
         }
 
         public bool CheckLostParticle()
         {
-            foreach (var particle in particles)
+            foreach (var particle in _particles)
             {
-                if ((particle.X < paddle.PaddlePosition || particle.X > paddle.PaddlePosition + paddle.myPaddle.Length)
+                if ((particle.X < _paddle.PaddlePosition || particle.X > _paddle.PaddlePosition + _paddle.MyPaddle.Length)
                     && particle.Y == Console.WindowHeight - 1)
                 {
                     return true;
@@ -63,24 +79,20 @@ namespace FallingParticles
             }
             return false;
         }
+
         public void SpawnParticles()
         {
             var newParticle = new Particle
             {
-                X = random.Next(0, Console.WindowWidth),
+                X = _random.Next(0, Console.WindowWidth),
                 Y = 0
             };
-            particles.Add(newParticle);
-        }
-
-        public void IncreaseLevel()
-        {
-            Level++;
+            _particles.Add(newParticle);
         }
 
         public void GetPartical()
         {
-            foreach (var particle in particles)
+            foreach (var particle in _particles)
             {
                 var particleX = (int)Math.Floor(particle.X);
                 var particleY = (int)Math.Floor(particle.Y);
@@ -88,7 +100,10 @@ namespace FallingParticles
                 Console.Write("O");
             }
         }
+
+        public void IncreaseLevel()
+        {
+            Level++;
+        }
     }
-
-
 }

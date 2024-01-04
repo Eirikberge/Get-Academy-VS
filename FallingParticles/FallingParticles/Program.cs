@@ -9,8 +9,7 @@ namespace FallingParticles
         static void Main()
         {
             var paddle = new Paddle();
-            var game = new Game(false, 0, 0, 0, paddle);
-            
+            var game = new Game(paddle);
 
             Console.CursorVisible = false;
             Console.WindowWidth = 80;
@@ -22,7 +21,7 @@ namespace FallingParticles
                 while (true)
                 {
                     DrawGame(game, paddle);
-                    MovePaddle(paddle);
+                    MovePaddle(game);
                     MoveParticles(game);
                     var hasLostParticle = CheckLostParticle(game);
                     if (hasLostParticle) break;
@@ -66,13 +65,13 @@ namespace FallingParticles
             Console.SetCursorPosition(71, 0);
             Console.Write($"Level: {game.Level}");
             Console.SetCursorPosition(paddle.PaddlePosition, Console.WindowHeight - 1);
-            Console.Write(paddle.myPaddle);
+            Console.Write(paddle.MyPaddle);
 
             game.GetPartical();
         }
-        static void MovePaddle(Paddle paddle)
+        static void MovePaddle(Game game)
         {
-            paddle.MovePaddle();
+            game.MovePaddle();
         }
         static void MoveParticles(Game game)
         {
