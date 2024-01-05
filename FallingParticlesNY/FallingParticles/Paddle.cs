@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace FallingParticles
+﻿namespace FallingParticles
 {
     internal class Paddle
     {

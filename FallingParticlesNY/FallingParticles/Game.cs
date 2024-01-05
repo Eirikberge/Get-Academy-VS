@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reflection.Emit;
-using System.Reflection.Metadata;
-
-namespace FallingParticles
+﻿namespace FallingParticles
 {
     internal class Game
     {
@@ -12,7 +8,6 @@ namespace FallingParticles
         private int Score; 
         private int GameRoundsBetweenSpawn; 
         private Random _random = new Random();
-
 
         public Game(Paddle paddle)
         {
@@ -31,10 +26,10 @@ namespace FallingParticles
             while (true)
             {
                 DrawGame();
-                particle.GetPartical();
+                particle.GetParticle();
                 MovePaddle();
                 particle.MoveParticles(game);
-                var hasLostParticle = particle.CheckLostParticle(paddle); // Hva med denne?
+                var hasLostParticle = particle.CheckLostParticle(paddle);
                 if (hasLostParticle) break;
                 if (roundCount >= GameRoundsBetweenSpawn)
                 {
@@ -52,7 +47,7 @@ namespace FallingParticles
                 Thread.Sleep(100);
             }
         }
-        public void InitializeGame(Particle particle)
+        private void InitializeGame(Particle particle)
         {
             var centerX = Console.WindowWidth / 2;
             _paddle.UpdatePaddlePosition(centerX - (centerX % _paddle.PaddleMoveDistance));
@@ -63,7 +58,7 @@ namespace FallingParticles
             InitGameRoundsBetweenSpawn();
         }
 
-        public void DrawGame()
+        private void DrawGame()
         {
             Console.Clear();
             Console.SetCursorPosition(60, 0);
@@ -88,6 +83,7 @@ namespace FallingParticles
             };
             particle.AddParticle(newParticle);
         }
+
         public void IncreaseScore()
         {
             Score++;

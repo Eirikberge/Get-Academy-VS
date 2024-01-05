@@ -1,16 +1,10 @@
-﻿using static System.Formats.Asn1.AsnWriter;
-using System.Collections.Generic;
-using System;
-
-namespace FallingParticles
+﻿namespace FallingParticles
 {
     internal class Particle
     {
         public float X { get; set; }
         public float Y { get; set; }
-        private List<Particle> _particles = new List<Particle>(); // Brukes i SpawnParticle
-        
-
+        private List<Particle> _particles = new List<Particle>();
 
         public void MoveParticles(Game game)
         {
@@ -39,7 +33,7 @@ namespace FallingParticles
             return false;
         }
 
-        public void GetPartical()
+        public void GetParticle()
         {
             foreach (var particle in _particles)
             {

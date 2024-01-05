@@ -5,8 +5,9 @@
         static void Main()
         {
             var paddle = new Paddle();
-            var game = new Game(paddle);
             var particle = new Particle();
+            var game = new Game(paddle);
+
 
             Console.CursorVisible = false;
             Console.WindowWidth = 80;
