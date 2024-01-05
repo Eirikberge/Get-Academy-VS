@@ -18,23 +18,7 @@ namespace FallingParticles
             Level = 0;
             Score = 0;
             GameRoundsBetweenSpawn = 0;
-            this._paddle = paddle;
-        }
-
-        public void MovePaddle()
-        {
-            if (Console.KeyAvailable)
-            {
-                var key = Console.ReadKey(true);
-                var moveLeft = key.Key == ConsoleKey.LeftArrow && _paddle.PaddlePosition >= _paddle.PaddleMoveDistance;
-                var moveRight = key.Key == ConsoleKey.RightArrow && _paddle.PaddlePosition < Console.WindowWidth - _paddle.MyPaddle.Length;
-                if (moveLeft || moveRight)
-                {
-                    var direction = moveLeft ? -1 : 1;
-                    int newPosition = _paddle.PaddlePosition + direction * 3 * _paddle.MyPaddle.Length / 4;
-                    _paddle.UpdatePaddlePosition(newPosition);
-                }
-            }
+            _paddle = paddle;
         }
 
         public void InitializeGame()

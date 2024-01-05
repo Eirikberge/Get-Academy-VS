@@ -7,6 +7,8 @@
             var student = new Student("Eirik");
 
             Console.WriteLine($"Navn: {student.Name}, Status: {student.Status}");
+            //Console.WriteLine($"Navn: {student.GetName()}, Status: {student.Status}");
+
             // Navn: Eirik, Status: HarSøkt
 
             student.ChangeStatus(StudentStatus.LevertDokumentasjon);

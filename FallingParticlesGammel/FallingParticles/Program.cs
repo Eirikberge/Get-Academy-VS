@@ -1,8 +1,4 @@
-﻿using System.Reflection.Emit;
-using System.Reflection.Metadata;
-using System.Threading.Tasks.Sources;
-using static System.Formats.Asn1.AsnWriter;
-namespace FallingParticles
+﻿namespace FallingParticles
 {
     internal class Program
     {
@@ -21,7 +17,7 @@ namespace FallingParticles
                 while (true)
                 {
                     DrawGame(game, paddle);
-                    MovePaddle(game);
+                    MovePaddle(paddle);
                     MoveParticles(game);
                     var hasLostParticle = CheckLostParticle(game);
                     if (hasLostParticle) break;
@@ -69,9 +65,9 @@ namespace FallingParticles
 
             game.GetPartical();
         }
-        static void MovePaddle(Game game)
+        static void MovePaddle(Paddle paddle)
         {
-            game.MovePaddle();
+            paddle.MovePaddle();
         }
         static void MoveParticles(Game game)
         {

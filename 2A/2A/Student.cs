@@ -62,5 +62,10 @@
             }
             return false;
         }
+
+        //public string GetName()
+        //{
+        //    return Name;
+        //}
     }
 }
