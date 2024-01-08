@@ -1,11 +1,11 @@
-﻿namespace _2A
+﻿namespace StudentStatusApp
 {
     internal class Student
     {
         public string Name { get; private set; }
         public StudentStatus Status { get; private set; }
 
-        private List <StudentStatus> _statusList;
+        private List<StudentStatus> _statusList;
 
         public Student(string name)
         {

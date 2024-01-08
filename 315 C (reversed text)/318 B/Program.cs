@@ -1,6 +1,4 @@
-﻿using System.Net.Mime;
-
-namespace _318_B
+﻿namespace _315_C
 {
     internal class Program
     {

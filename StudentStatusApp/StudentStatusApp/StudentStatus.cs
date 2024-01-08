@@ -1,4 +1,4 @@
-﻿namespace _2A
+﻿namespace StudentStatusApp
 {
     public enum StudentStatus
     {
