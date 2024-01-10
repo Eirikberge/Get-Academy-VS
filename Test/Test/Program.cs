@@ -6,17 +6,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var text = "Hei på deg";
-            var count = 0;
+            var text = new textclass("Hei på deg");
 
-            foreach (var character in text)
-            {
-                if (character == 'e')
-                {
-                    count++;
-                }
-            }
-            Console.WriteLine(count);
+            text.CharCounter();
         }
     }
 }

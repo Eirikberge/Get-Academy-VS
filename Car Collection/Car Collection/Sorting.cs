@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Car_Collection
@@ -23,10 +24,11 @@ namespace Car_Collection
 
         public void DisplayCars(string countryInput)
         {
-            bool foundCar = false;
+            var foundCar = false;
+            var formattedCountryInput = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(countryInput);
             foreach (var car in _cars)
             {
-                if (countryInput == car.Country)
+                if (formattedCountryInput == car.Country)
                 {
                     Console.WriteLine($" - {car.Brand}");
                     foundCar = true;
@@ -42,10 +44,11 @@ namespace Car_Collection
         {
             Console.WriteLine($"Du søkte etter: {brandInput}");
             Console.WriteLine();
-            bool foundCar = false;
+            var foundCar = false;
+            var formatedBrandInput = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(brandInput);
             foreach (var car in _cars)
             {
-                if (brandInput == car.Brand)
+                if (formatedBrandInput == car.Brand)
                 {
                     Console.WriteLine($"Bilmerket {car.Brand} er fra {car.Country}");
                     foundCar = true;

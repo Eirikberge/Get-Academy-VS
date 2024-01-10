@@ -2,9 +2,8 @@
 {
     internal class CoinCount
     {
-        public int Value;
-        public int Count;
-
+        private int Value;
+        private int Count;
 
         public CoinCount(int value, int count)
         {
@@ -12,20 +11,32 @@
             Count = count;
         }
 
-        public static CoinCount[] GetCoinCountArray()
+        public static CoinCount[] GetCoinCounts()
         {
-            var coinCounts = new CoinCount[]
+            return new CoinCount[]
             {
                 new CoinCount(5, 3),
                 new CoinCount(10, 2),
                 new CoinCount(10, 11),
             };
-            return coinCounts;
         }
 
         public int CoinsValue()
         {
             return Value * Count;
+        }
+
+        public void GetTotalCount()
+        {
+            var coinCounts = GetCoinCounts();
+            var totalValue = 0;
+
+            foreach (var coin in coinCounts)
+            {
+                totalValue += CoinsValue();
+            }
+
+            Console.WriteLine(totalValue);
         }
     }
 

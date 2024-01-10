@@ -40,8 +40,8 @@
         private static void DisplayCountryAndCars(Sorting getInfo)
         {
             Console.WriteLine("Hvilket land vil du se bilmerkene til? (eller se alle)");
-            var countryInput = Console.ReadLine();
-            if (countryInput == "Alle") getInfo.DisplayAllCars();
+            var countryInput = Console.ReadLine().ToLower();
+            if (countryInput == "alle") getInfo.DisplayAllCars();
             else getInfo.DisplayCars(countryInput);
         }
 

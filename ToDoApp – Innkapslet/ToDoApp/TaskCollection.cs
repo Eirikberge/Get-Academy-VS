@@ -29,7 +29,7 @@
             return _tasks.Count;
         }
 
-        private static void CreateTaskText(ToDoApp.Task task)
+        private void CreateTaskText(ToDoApp.Task task)
         {
             Console.Write(task.Name.PadRight(10));
             Console.Write(task.DueDate.ToString("dd/MM/yy"));
