@@ -23,7 +23,7 @@
             {
                 var randomSpeed = random.Next(20,35);
                 horse.DistanceRan += randomSpeed;
-                Console.WriteLine($"{horse.Name} har løpt {horse.DistanceRan}");
+                Console.WriteLine($"{horse.Name} har løpt {randomSpeed}");
             }
         }
 
@@ -41,7 +41,7 @@
             {
                 if (horse.DistanceRan >= RaceDistance)
                 {
-                    Console.WriteLine($"{horse.Name} er vinner");
+                    Console.WriteLine($"{horse.Name} er vinner med {horse.DistanceRan}");
                 }
             }
         }

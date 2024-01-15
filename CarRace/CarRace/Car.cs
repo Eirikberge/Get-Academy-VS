@@ -6,7 +6,6 @@
         private int Speed;
         public int Distance;
 
-
         public Car(string name)
         {
             Name = name;
@@ -39,10 +38,6 @@
 
             Distance += randomSpeed1;
             car2.Distance += randomSpeed2;
-
-           
-
-
         }
     }
 }
