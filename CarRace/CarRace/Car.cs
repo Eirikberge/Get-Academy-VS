@@ -2,42 +2,37 @@
 {
     internal class Car
     {
-        public string Name;
-        private int Speed;
-        public int Distance;
+        public string Name { get; private set; }
+        public int Speed { get; private set; }
+        public int Distance { get; private set; }
 
         public Car(string name)
         {
             Name = name;
             Speed = 10;
             Distance = 0;
+            
         }
 
-        public void Drive()
+        public void ChangeSpeed(Car car, int change)
         {
-            Distance += Speed;
-            ChangeSpeed();
+            car.Speed += change;
         }
 
-        private void ChangeSpeed()
+        public int ChangeDistance(Car car)
         {
-            if (Distance >= 500 && Speed > 10) Speed -= 10;
-            else Speed += 10;
+            return car.Distance += car.Speed;
         }
 
-        public void GetEndDescription()
-        { 
-            Console.WriteLine($"{Name} er fremme og har parkert");
-        }
 
-        public void Race(Car car2)
+        public void SetNewSpeed(Car car, int newSpeed)
         {
-            var random = new Random();
-            var randomSpeed1 = random.Next(60, 200);
-            var randomSpeed2 = random.Next(60, 200);
+            car.Speed = newSpeed;
+        }
 
-            Distance += randomSpeed1;
-            car2.Distance += randomSpeed2;
+        public void ClearDistance(Car car)
+        {
+            car.Distance = 0;
         }
     }
 }

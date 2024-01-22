@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Metrics;
+﻿using Microsoft.VisualBasic;
 
 namespace CarRace
 {
@@ -6,26 +6,40 @@ namespace CarRace
     {
         static void Main(string[] args)
         {
-            var cars = new Car[]
-            {
-                new Car("Pelle"),
-                new Car("Politibil"),
-            };
-            var car1 = cars[0];
-            var car2 = cars[1];
+            var car1 = new Car("Pelle");
+            var car2 = new Car("Politibil");
+            //var cars = new Car[]
+            //{
+            //    new Car("Pelle"),
+            //    new Car("Politibil"),
+            //};
+            //var car1 = cars[0];
+            //var car2 = cars[1];
 
-            while (car1.Distance <= 10000 || car2.Distance <= 10000)
+            var race = new Racing();
+
+            SingleRace(car1, race);
+            while (car1.Distance < 1000 && car2.Distance < 1000)
             {
-                car1.Race(car2);
-                Console.WriteLine($"{car1.Name} har kjørt {car1.Distance}");
-                Console.WriteLine($"{car2.Name} har kjørt {car2.Distance}");
-                Console.WriteLine("");
+                race.DoRace(car1, car2);
             }
-            if (car1.Distance > car2.Distance)
+            Console.WriteLine(race.WinnerText(car1, car2));
+            car1.ClearDistance(car1);
+            car2.ClearDistance(car2);
+            Console.WriteLine();
+            Console.WriteLine();
+
+        }
+
+
+        private static void SingleRace(Car car1, Racing race)
+        {
+            while (car1.Distance < 1000)
             {
-                Console.WriteLine($"{car1.Name} kom først i mål");
+                race.Drive(car1);
             }
-            else Console.WriteLine($"{car2.Name} kom først i mål");
+            Console.WriteLine($"{car1.Name} har kjørt {car1.Distance}");
+            car1.ClearDistance(car1);
         }
     }
 }
