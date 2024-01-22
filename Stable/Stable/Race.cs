@@ -1,4 +1,4 @@
-﻿namespace NewStable
+﻿namespace Stable
 {
     internal class Race
     {
@@ -21,7 +21,7 @@
             var random = new Random();
             foreach (var horse in _racingHorses)
             {
-                var randomSpeed = random.Next(20,35);
+                var randomSpeed = random.Next(20, 35);
                 horse.DistanceRan += randomSpeed;
                 Console.WriteLine($"{horse.Name} har løpt {randomSpeed}");
             }
@@ -34,7 +34,7 @@
                 if (horse.DistanceRan >= RaceDistance) return true;
             }
             return false;
-        } 
+        }
         public void PrintWinner()
         {
             foreach (var horse in _racingHorses)

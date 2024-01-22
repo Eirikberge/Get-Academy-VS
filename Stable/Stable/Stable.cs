@@ -1,4 +1,4 @@
-﻿namespace NewStable
+﻿namespace Stable
 {
     internal class Stable
     {

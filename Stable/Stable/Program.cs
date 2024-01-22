@@ -1,4 +1,6 @@
-﻿namespace NewStable
+﻿using System.Diagnostics;
+
+namespace Stable
 {
     internal class Program
     {
