@@ -19,10 +19,7 @@
             car.Speed += change;
         }
 
-        public int ChangeDistance(Car car)
-        {
-            return car.Distance += car.Speed;
-        }
+        public int ChangeDistance(Car car) => car.Distance += car.Speed;
 
 
         public void SetNewSpeed(Car car, int newSpeed)

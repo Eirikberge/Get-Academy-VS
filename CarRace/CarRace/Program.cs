@@ -8,6 +8,8 @@ namespace CarRace
         {
             var car1 = new Car("Pelle");
             var car2 = new Car("Politibil");
+            var car3 = new Car("Brannbil");
+            var car4 = new Car("Sam");
             //var cars = new Car[]
             //{
             //    new Car("Pelle"),
@@ -16,19 +18,32 @@ namespace CarRace
             //var car1 = cars[0];
             //var car2 = cars[1];
 
-            var race = new Racing();
+            var racing = new Racing();
 
-            SingleRace(car1, race);
+            racing.AddToRace(car2);
+            racing.AddToRace(car3);
+            racing.AddToRace(car4);
+
+            //SingleRace(car1, race);
+            //RaceDouble(car1, car2, race);
+            while (racing.EndRace())
+            {
+                racing.RaceWithManyCars();
+            }
+            racing.PrintPodium();
+        }
+
+        private static void RaceDouble(Car car1, Car car2, Racing race)
+        {
             while (car1.Distance < 1000 && car2.Distance < 1000)
             {
-                race.DoRace(car1, car2);
+                race.DoubleRace(car1, car2);
             }
+
             Console.WriteLine(race.WinnerText(car1, car2));
             car1.ClearDistance(car1);
             car2.ClearDistance(car2);
             Console.WriteLine();
-            Console.WriteLine();
-
         }
 
 
