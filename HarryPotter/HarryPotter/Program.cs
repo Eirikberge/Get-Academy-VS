@@ -5,45 +5,10 @@
 
         static void Main(string[] args)
         {
-            var hogwarts = new Hogwart();
+            var magicStore = new MagicStore();
+            var hogwarts = new Hogwart(magicStore);
+            
             hogwarts.Run();
-
-
-            //    var magicStore = new MagicStore();
-
-            //    Console.WriteLine("Hva vil du kjøpe?");
-            //    Console.WriteLine("1. Pets");
-            //    Console.WriteLine("2. Tryllestav");
-            //    Console.WriteLine("3. Pets");
-            //    while (true)
-            //    {
-            //        Console.WriteLine("Valg:");
-            //        var nr = 1;
-            //        var cmd = Console.ReadLine();
-            //        if (cmd == "1")
-            //        {
-            //            ShowItems(magicStore.petsList, nr);
-            //        }
-            //        else if (cmd == "2")
-            //        {
-            //            ShowItems(magicStore.wands, nr);
-            //        }
-            //    }
-
-            //}
-
-            //private static void ShowItems(List<Item> items, int nr)
-            //{
-            //    Console.WriteLine("Hva vil du kjøpe?");
-            //    foreach (var item in items)
-            //    {
-            //        Console.WriteLine($"{nr++}-{item.Name}");
-            //    }
-            //    var buyInput = Console.ReadLine();
-            //    if (buyInput == "Rotte")
-            //    {
-
-            //    }
         }
     }
 }
