@@ -6,6 +6,9 @@ namespace HarryPotter
         public string Name;
         public Letter Letter;
 
+        private Hogwart Hogwart;
+        private Character character;
+
         public Owl(string name)
         {
             Name = name;
@@ -16,25 +19,24 @@ namespace HarryPotter
 
         }
 
-        public void FindReciver()
+        public void FindReceiver(Letter letter)
         {
-            //finne reciver,
-            //feilmelding + hoppe et kort steg tilbake om navnet er feil
-            // må gå igjenom lista med characters, 
-            // finner den navnet, så sendes en godtkjent eller noe + navnet
-            // til deliverLetter
-
-
+            if (Hogwart.FoundReceiver())
+            {
+                DeliverLetter(letter);
+            }
+            Console.WriteLine("Fant ingen mottaker med det navnet");
         }
 
-        public void DeliverLetter()
+        public void DeliverLetter(Letter letter)
         {
-
+            character.AddLetterToInventory(letter);
         }
 
         public void GiveToOwl(Letter letter)
         {
             Letter = letter;
+            FindReceiver(letter);
         }
     }
 }

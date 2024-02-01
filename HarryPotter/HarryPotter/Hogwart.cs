@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.Design;
 
 namespace HarryPotter
 {
@@ -8,6 +9,8 @@ namespace HarryPotter
         private MagicStore _magicStore;
         private Character _currentCharacter;
         public List<Item> magicSpells;
+
+        public Letter letter;
 
         public Hogwart(MagicStore magicStore)
         {
@@ -63,11 +66,10 @@ namespace HarryPotter
                     {
                         if (cmd2 == "Vingardium Leviosa" || cmd2 == spell.Name[0].ToString())
                         {
-                            Console.WriteLine("En fjær flyr!"); // ser at jeg kanskje kan lage en enum av spells?
+                            Console.WriteLine("En fjær flyr!");
                             Thread.Sleep(5000);
                         }
                         else if (cmd2 == "Hokus Pokus") spellEffects.ShowFireworks();
-                        //Console.WriteLine("Masse fyrverkeri!!!");
                     }
                     else Console.WriteLine("Ugyldig trylleformel");
                 }
@@ -121,13 +123,22 @@ namespace HarryPotter
             ShowItems();
         }
 
-        private void ShowItems()
+        private void ShowItems() // flytter den over
         {
             Console.WriteLine("Items:");
             foreach (var item in _currentCharacter._items)
             {
                 Console.WriteLine($" - {item.Name}");
             }
+        }
+
+        public bool FoundReceiver()
+        {
+            foreach (var character in _characters)
+            {
+                if (character.Name == letter.FindReceiver()) return true;
+            }
+            return false;
         }
     }
 }

@@ -11,6 +11,8 @@ namespace HarryPotter
         public List<Letter> _letters;
         public Owl Owl;
 
+        private Letter letter;
+
         public Character(string name, string house)
         {
             Name = name;
@@ -33,9 +35,9 @@ namespace HarryPotter
             return false;
         }
 
-        public void Makeletter(Character reciver)
+        public void Makeletter(Character receiver)
         {
-            var letter = new Letter("test", reciver);
+            var letter = new Letter("test", receiver);
             WriteLetter(letter);
         }
 
@@ -54,9 +56,11 @@ namespace HarryPotter
             Owl.GiveToOwl(letter);
         }
 
-        public void AddLetterToInventory()
+        public void AddLetterToInventory(Letter letter)
         {
-
+            ////Hvordan gir jeg det til reciver?
+            //._letters.Add(letter);
+            //Console.WriteLine($"{._letters.Name}");
         }
     }
 }

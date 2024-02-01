@@ -14,26 +14,12 @@
 
         public void ShowStore(Character customer)
         {
-            Customer = customer; // for å få tak i den som er new
+            Customer = customer; // for å få tak i den som er new i Program
             Console.Clear();
             Console.WriteLine("Vil du se dyr(d) eller tryllestaver(t)?");
             var storecmd = Console.ReadLine();
-            if (storecmd == "d")
-            {
-                Console.WriteLine("Pets:");
-                foreach (Item item in petsList)
-                {
-                    Console.WriteLine($"{item.Id} - {item.Name}");
-                }
-            }
-            if (storecmd == "t")
-            {
-                Console.WriteLine("\nWands:");
-                foreach (Item item in wands)
-                {
-                    Console.WriteLine($"{item.Id} - {item.Name}");
-                }
-            }
+            if (storecmd == "d") ShowPets();
+            if (storecmd == "t") ShowWands();
 
             Console.WriteLine("Skriv inn nr til det du vil kjøpe?");
             var idCmd = Console.ReadLine();
@@ -41,6 +27,25 @@
             BuyItem(storecmd, idCmdInt);
 
         }
+
+        private void ShowWands()
+        {
+            Console.WriteLine("\nWands:");
+            foreach (Item item in wands)
+            {
+                Console.WriteLine($"{item.Id} - {item.Name}");
+            }
+        }
+
+        private void ShowPets()
+        {
+            Console.WriteLine("Pets:");
+            foreach (Item item in petsList)
+            {
+                Console.WriteLine($"{item.Id} - {item.Name}");
+            }
+        }
+
         private void BuyItem(string Choice, int idChoice)
         {
             if (Choice == "d")
@@ -50,6 +55,4 @@
             }
         }
     }
-
-
 }
