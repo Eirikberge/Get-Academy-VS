@@ -58,7 +58,7 @@ namespace HarryPotter
 
         public void AddLetterToInventory(Letter letter)
         {
-            ////Hvordan gir jeg det til reciver?
+            ////Hvordan gir jeg det til receiver?
             //._letters.Add(letter);
             //Console.WriteLine($"{._letters.Name}");
         }
