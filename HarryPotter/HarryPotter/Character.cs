@@ -7,18 +7,20 @@ namespace HarryPotter
     {
         public string Name { get; private set; }
         public string House { get; private set; }
-        public List<Item> _items;
-        public List<Letter> _letters;
+        public int CharacterId { get; private set; }
+        public List<Item> _items { get; private set; }
+        public List<Letter> _letters { get; private set; }
         public Owl Owl;
 
         private Letter letter;
 
-        public Character(string name, string house)
+        public Character(string name, string house, int characterId)
         {
             Name = name;
             House = house;
             _items = new List<Item>();
             _letters = new List<Letter>();
+            CharacterId = characterId;
         }
 
         public void AddItemToCustomer(Item selectedPet)
@@ -58,9 +60,30 @@ namespace HarryPotter
 
         public void AddLetterToInventory(Letter letter)
         {
-            ////Hvordan gir jeg det til receiver?
-            //._letters.Add(letter);
-            //Console.WriteLine($"{._letters.Name}");
+            _letters.Add(letter);
+        }
+
+        public void OpenLetters()
+        {
+            foreach (var letter in _letters)
+            {
+                Console.WriteLine($"{letter.Name}");
+            }
+        }
+        public void ShowCharacterInfo()
+        {
+            Console.Clear();
+            Console.WriteLine($"Navn: {Name}");
+            Console.WriteLine($"Hus: {House}");
+            ShowItems();
+        }
+        private void ShowItems()
+        {
+            Console.WriteLine("Items:");
+            foreach (var item in _items)
+            {
+                Console.WriteLine($" - {item.Name}");
+            }
         }
     }
 }

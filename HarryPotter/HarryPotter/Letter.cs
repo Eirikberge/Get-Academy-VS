@@ -1,28 +1,19 @@
 ﻿
-
-using System;
-
 namespace HarryPotter
 {
     internal class Letter
     {
         public string Name { get; private set; }
-        private Character Reception;
+        public Character Receiver;
 
-        public Letter(string name, Character reception)
+        public Letter(string name, Character receiver)
         {
             Name = name;
-            Reception = reception;
+            Receiver = receiver;
         }
-
         public void WriteLetter(string text)
         {
             Name = text;
-        }
-
-        public string FindReceiver()
-        {
-            return Reception.Name;
         }
     }
 }
